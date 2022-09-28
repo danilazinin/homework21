@@ -1,13 +1,9 @@
 ﻿Console.Clear();
-
-Console.Write("Введите количество строк массива: ");
-int rows = int.Parse(Console.ReadLine());
-
-Console.Write("Введите количествa столбцов массива: ");
-int columns = int.Parse(Console.ReadLine());
-
-int[,] array = GetArray(rows, columns, 0, 9);
+Console.WriteLine("");
+int[,] array = GetArray(5, 5, 0, 9);
 PrintArray(array);
+
+Console.WriteLine($"строка {AnaliticArray(array)} имеет наименьшую сумму");
 
 int[,] GetArray(int a, int b, int minValue, int maxValue)
 {
@@ -35,28 +31,38 @@ void PrintArray(int[,] array1)
 
 }
 
-void AnaliticPrintArray(int[,] array1, int a, int b)
+int AnaliticArray(int[,] array1)
 {
-    double num = 0;
-    double sum = 0;
-    int n = 1;
+    int  num = 0;
+    int sum = 0;
     int sumMin = 1000;
+    int kol = 1;
+    int chil = 0;
+
     for (int index = 0; index < array1.GetLength(1); index++)
     {
         sum = 0;
 
         for (int i = 0; i < array1.GetLength(0); i++)
         {
-            num = array1[i, index];
+            num = array1[index, i];
             sum = sum + num;
             num++;
-            // Console.WriteLine($"сумма - {sum}");
+            
         }
+        
+        Console.WriteLine($"сумма {kol} строки = {sum}");
+        Console.WriteLine(" ");
 
-        if (sum < sumMin )
+        if (sum < sumMin)
         {
+            sumMin = sum;
             sum = sumMin;
-            Console.WriteLine(sumMin);
+            chil = kol;  
         }
-    }   
+        kol++;
+
+    } 
+    return chil;
+
 }

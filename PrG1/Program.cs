@@ -2,13 +2,9 @@
 
 Console.Clear();
 
-Console.Write("Введите количество строк массива: ");
-int rows = int.Parse(Console.ReadLine());
 
-Console.Write("Введите количествa столбцов массива: ");
-int columns = int.Parse(Console.ReadLine());
 
-int[,] array = GetArray(rows, columns, 0, 9);
+int[,] array = GetArray(5, 5, 0, 9);
 PrintArray(array);
 
 Console.WriteLine(" ");
@@ -50,13 +46,13 @@ void PrintArray(int[,] array1)
 int[,] AnaliticArray(int[,] array1)
 {
     int result = 0;
-    int result1;
-
-    for (int index = 0; index < array1.GetLength(1) + 1; index++)
+    int result1 = 0;
+    int kol = 0;
+    while (kol <= array1.GetLength(1))
     {
-        int kol = 0;
-        while (kol <= 10)
+        for (int index = 0; index < array1.GetLength(1); index++)
         {
+
 
             for (int i = 0; i < array1.GetLength(0) - 1; i++)
             {
@@ -68,17 +64,15 @@ int[,] AnaliticArray(int[,] array1)
                     result1 = array[index, i];
                     array1[index, i] = result;
                     array1[index, i + 1] = result1;
-                    //array[index, i + 1] = array1[index, i];
-                }
 
+                }
 
             }
 
-            kol++;
+
         }
-
-
-    }
+        kol++;
+  }
     return array1;
 }
 
